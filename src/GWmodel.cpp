@@ -470,7 +470,7 @@ List gw_reg(mat x, vec y, vec w, bool hatmatrix, int focus)
 	mat xtw = trans(x % (w * wspan));
 	mat xtwx = xtw * x;
 	mat xtwy = trans(x) * (w % y);
-	mat xtwx_inv = inv(xtwx);
+	mat xtwx_inv = pinv(xtwx);
 	vec beta = xtwx_inv * xtwy;
 	if (hatmatrix)
 	{
