@@ -367,7 +367,7 @@ gwr.poisson.wt<-function(y,x,bw,W.mat, verbose=T)
      mu <- exp(nu)
      old.llik <- llik
      #llik <- sum(y*nu - mu - log(gamma(y+1)))
-	 llik <- sum(dpois(y, exp(Rmpfr::mpfr(nu, 128)), log = TRUE))
+	 llik <- sum(Rmpfr::dpois(y, exp(Rmpfr::mpfr(nu, 128)), log = TRUE))
      if(verbose)
         cat(paste("   ",Rmpfr::format(it.count,digits=4,width=4),"    ",Rmpfr::format(llik,digits=4,width=7),"\n"))
      if (abs((old.llik - llik)/llik) < tol) break
