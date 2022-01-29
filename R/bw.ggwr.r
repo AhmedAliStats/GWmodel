@@ -325,9 +325,9 @@ ggwr.aic<-function(bw, X, Y,family, kernel,adaptive, dp.locat, p=2, theta=0, lon
   else
     AICc<-Inf   
   if(adaptive)
-    cat("Adaptive bandwidth (number of nearest neighbours):", bw, "AICc value:", AICc, "\n")
+    cat("Adaptive bandwidth (number of nearest neighbours):", bw, "AICc value:", Rmpfr::asNumeric(AICc), "\n")
   else
-    cat("Fixed bandwidth:", bw, "AICc value:", AICc, "\n")
+    cat("Fixed bandwidth:", bw, "AICc value:", Rmpfr::asNumeric(AICc), "\n")
   AICc
 }
 
@@ -369,7 +369,7 @@ gwr.poisson.wt<-function(y,x,bw,W.mat, verbose=T)
      #llik <- sum(y*nu - mu - log(gamma(y+1)))
 	 llik <- sum(Rmpfr::dpois(y, exp(Rmpfr::mpfr(nu, 128)), log = TRUE))
      if(verbose)
-        cat(paste("   ",Rmpfr::format(it.count,digits=4,width=4),"    ",Rmpfr::format(llik,digits=4,width=7),"\n"))
+        cat(paste("   ",formatC(it.count,digits=4,width=4),"    ",Rmpfr::format(llik,digits=4,width=7),"\n"))
      if (abs((old.llik - llik)/llik) < tol) break
      wt2 <- mu
      it.count <- it.count+1
